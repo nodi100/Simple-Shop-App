@@ -3,9 +3,10 @@
 import { useMemo } from "react";
 import CartItem from "./CartItem";
 import { useCartStore } from "@/store/cartStore";
+import Button from "../button/Button";
 
 export default function CartList() {
-  const { cart } = useCartStore();
+  const { cart, pendingChanges } = useCartStore();
 
   const total = useMemo(
     () =>
@@ -27,6 +28,13 @@ export default function CartList() {
         <h2 className="text-xl font-semibold">Cart Summary</h2>
         <p>Total: ${total?.toFixed(2)}</p>
       </div>
+      <Button
+        onClick={() => {}}
+        className="mt-2"
+        disabled={pendingChanges?.length > 0}
+      >
+        Go to Chekout
+      </Button>
     </div>
   );
 }
